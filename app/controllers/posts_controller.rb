@@ -15,10 +15,13 @@ class PostsController < ApplicationController
     #   title: params[:title],
     #   content: params[:content]
     # )
-    @post = Post.new(
-      title: params["post"]["title"],
-      content: params["post"]["content"]
-    )
+    @post = Post.new(post_params)
+      # title: params["post"]["title"],
+      # content: params["post"]["content"]
+      # title: params["post"],
+      # content: params["post"]
+
+    # )
     if @post.save
       redirect_to '/'
     else
@@ -40,11 +43,12 @@ class PostsController < ApplicationController
   def update
     # @post = Post.find(params[:id])
     # find_post
-    @post.update(
-      title: params[:title],
-      content: params[:content]
-    )
-    redirect_to "/posts/#{@post.id}"
+    @post.update(post_params)
+      # title: params[:title],
+      # content: params[:content]
+    # )
+    # redirect_to "/posts/#{@post.id}"
+    redirect_to @post
   end
 
   def destroy
@@ -59,4 +63,9 @@ class PostsController < ApplicationController
   def find_post
     @post = Post.find(params[:id])
   end
+
+  def post_params
+    params.require(:post).permit(:title, :content)
+  end
+
 end

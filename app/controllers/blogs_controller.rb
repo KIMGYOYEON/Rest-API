@@ -19,6 +19,8 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
+    # @blog = Blog.find(params[:id])
+    # 이 아이가 생략되어 있다고 생각할 수 있다
   end
 
   # POST /blogs
@@ -70,5 +72,6 @@ class BlogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
       params.require(:blog).permit(:title, :content)
+
     end
 end
